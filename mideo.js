@@ -62,7 +62,7 @@ function Mideo_Player(element)
 	var _video = this.video,
 		_this = this;
 	
-	findPos = function(elem)
+	var findPos = function(elem)
 	{
 		var curleft = curtop = 0;
 		if(elem.offsetParent)
@@ -78,7 +78,7 @@ function Mideo_Player(element)
 	
 	this.offsetTrail = findPos(this.trailProgress)[0];
 	
-	seekWithTrail = function(e)
+	var seekWithTrail = function(e)
 	{
 		if(_this.trailSeek)
 			_this.seekToPercentage((e.pageX - _this.offsetTrail) / _this.trailWidth);
@@ -111,7 +111,7 @@ function Mideo_Player(element)
 	}, false);
 	
 	this.preSeekPaused = false;
-	seek = function()
+	var seek = function()
 	{
 		switch(_this.seeking)
 		{
@@ -125,14 +125,14 @@ function Mideo_Player(element)
 			break;
 		}
 	}
-	startSeeking = function(dir)
+	var startSeeking = function(dir)
 	{
 		_this.preSeekPaused = _video.paused;
 		_video.pause();
 		_this.seeking = dir;
 		_this.seeker = setInterval('seek()', 100);
 	}
-	stopSeeking = function(e)
+	var stopSeeking = function(e)
 	{
 		if(!_this.preSeekPaused)
 			_video.play();
@@ -250,7 +250,7 @@ Mideo_Player.prototype.updateBar = function(e)
 	}
 }
 
-init = function()
+var init = function()
 {
 	var elements = document.querySelectorAll('.cm_player');
 	var players = [];
