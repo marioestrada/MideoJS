@@ -64,7 +64,8 @@ function Mideo_Player(element)
 	
 	var findPos = function(elem)
 	{
-		var curleft = curtop = 0;
+		var curleft = 0;
+		var curtop = 0;
 		if(elem.offsetParent)
 		{
 			do
@@ -73,7 +74,7 @@ function Mideo_Player(element)
 				curtop += elem.offsetTop;
 			}while(elem = elem.offsetParent)
 		}
-		return [curleft,curtop];
+		return [curleft, curtop];
 	}
 	
 	this.offsetTrail = findPos(this.trailProgress)[0];
@@ -87,6 +88,7 @@ function Mideo_Player(element)
 	this.trailProgress.addEventListener('mousedown', function(e){ _this.trailSeek = true; seekWithTrail(e); }, false);
 	this.trailProgress.addEventListener('mousemove', seekWithTrail, false);
 	window.addEventListener('mouseup', function(){ _this.trailSeek = false; }, false);
+
 	this.playButton.addEventListener('click', function()
 	{
 		_video.play();
@@ -222,7 +224,7 @@ Mideo_Player.prototype.formatTime = function(duration)
 	time[0] = Math.floor(duration / 3600);
 	time[1] = Math.floor((duration % 3600) / 60);
 	time[2] = Math.floor(duration % 60);
-	for(i = 0; i < 3; i++)
+	for(var i = 0; i < 3; i++)
 	{
 		time[i] = time[i] < 10 ? '0' + time[i] : time[i];
 	}
